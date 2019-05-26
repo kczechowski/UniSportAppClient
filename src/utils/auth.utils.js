@@ -19,7 +19,7 @@ export const handleError = (dispatch, error) => {
 };
 
 export const isAuthenticated = (state) =>{
-    if(state.authReducer.token && state.authReducer.token.exp)
+    if(state.authReducer.isAuthenticated && state.authReducer.token && state.authReducer.token.exp)
         return state.authReducer.token.exp - Math.round((new Date()).getTime() / 1000) >= 0
     return false
 }

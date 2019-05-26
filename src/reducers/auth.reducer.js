@@ -21,7 +21,6 @@ export const authReducer = createReducer(initState, {
             isLogging: false,
             isAuthenticated: true,
             token: action.payload,
-            errors: {}
         }),
         [`${GET_TOKEN_USERID}_PENDING`]: (state, action) => ({
             ...state,
@@ -36,14 +35,11 @@ export const authReducer = createReducer(initState, {
             isLogging: false,
             isAuthenticated: true,
             user_id: action.payload.user_id,
-            errors: {}
         }),
         "TOKEN_SAVE": (state, action) => ({
             ...state,
             isLogging: false,
-            isAuthenticated: true,
             token: action.payload,
-            errors: {}
         }),
         [`${LOGOUT}`]: (state, action) => ({
             ...initState,

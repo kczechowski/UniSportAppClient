@@ -14,7 +14,7 @@ export default class Profile extends Component {
         const {email} = oauth_info || ''
         return (
             <div>
-                <p>{id}, {username}, {email}</p>
+                <p>{JSON.stringify(this.props.user)}</p>
             </div>
         );
     }

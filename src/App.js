@@ -11,9 +11,24 @@ import {connect} from "react-redux";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import AppDashboard from "./components/AppDashboard/";
 import Logout from "./components/Logout";
+import RegisterForm from "./components/RegisterForm";
 
 
-const Public = () => <h3>Public<Link to="/app/">Go to app</Link></h3>
+const Public = () => (
+    <div className="container">
+
+        <div className="mb-3 text-center">
+            <div className="card mb-4 w-100 shadow-sm" >
+                <div className="card-header">
+                    <h4 className="my-0 font-weight-normal">Welcome</h4>
+                </div>
+                <div className="card-body">
+                    <Link to="/app/" className="btn btn-lg btn-block btn-primary">Go to app</Link>
+                </div>
+            </div>
+        </div>
+    </div>
+);
 
 class App extends Component {
 
@@ -21,10 +36,11 @@ class App extends Component {
         return (
             <Router>
                 <Switch>
-                <Route exact path="/" component={Public}/>
-                <Route path="/login" component={LoginForm}/>
-                <Route path="/logout" component={Logout}/>
-                <PrivateRoute path='/app/' component={AppDashboard}/>
+                    <Route exact path="/" component={Public}/>
+                    <Route path="/login" component={LoginForm}/>
+                    <Route path="/register" component={RegisterForm}/>
+                    <Route path="/logout" component={Logout}/>
+                    <PrivateRoute path='/app/' component={AppDashboard}/>
                 </Switch>
             </Router>
         )

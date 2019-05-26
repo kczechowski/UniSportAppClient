@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {createUser, getAllUsers, getUserInfo} from "../actions/user.actions";
 import {getTokenUserID, login, saveToken} from "../actions/auth.actions";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {isAuthenticated} from "../utils/auth.utils";
 
 class LoginForm extends Component {
@@ -40,31 +40,24 @@ class LoginForm extends Component {
     render() {
         const {from} = this.props.location.state || {from: {pathname: '/app/'}};
         const {isAuthenticated} = this.props;
-        if (isAuthenticated)
-            return (<Redirect to={from}/>);
+        if (isAuthenticated === true)
+            return (<Redirect to="/"/>);
+
+        if(this.props.errors)
+            alert(this.props.errors);
 
         return (
             <div>
-                <a href={"http://10.10.10.1:9090/login?redirect_uri=http://localhost:3000/login"}>link</a>
-                {/*<form onSubmit={this.handleSubmit}>*/}
-                {/*<h1>Login using oauth account</h1>*/}
-                {/*<label>*/}
-                {/*username:*/}
-                {/*<input type="text" value={this.state.username} onChange={this.handleUsernameChange}/>*/}
-                {/*</label>*/}
-                {/*<label>*/}
-                {/*password:*/}
-                {/*<input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>*/}
-                {/*</label>*/}
-                {/*<input type="submit" value="Submit"/>*/}
-                {/*</form>*/}
+                <Link to="/register" className="btn btn-lg btn-block btn-primary">Sign up</Link>
+                <a href="http://10.10.10.1:9090/login?redirect_uri=http://localhost:3000/login" className="btn btn-lg btn-block btn-primary">Login using OAuth</a>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: isAuthenticated(state)
+    isAuthenticated: isAuthenticated(state),
+    errors: state.authReducer.errors
 });
 
 const mapDispatchToProps = (dispatch) => ({

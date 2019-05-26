@@ -6,6 +6,7 @@ export const GET_LOGGED_IN_USER_INFO = 'GET_LOGGED_IN_USER_INFO';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_WORKOUTS = 'GET_USER_WORKOUTS';
 export const CREATE_USER = 'CREATE_USER';
+export const DELETE_USER = 'DELETE_USER';
 
 
 // export const getUserInfo = (id) => (dispatch, getState) => {
@@ -30,13 +31,26 @@ export const getLoggedInUserInfo = (id) => (dispatch, getState) => {
     }).catch((error)=>{
         handleError(dispatch, error);
     })
-}
+};
 
-export const getAllUsers = () => (dispatch)  => {
+export const getAllUsers = () => (dispatch, getState) => {
+    const {access_token} = getState().authReducer.token;
     return dispatch({
         type: GET_ALL_USERS,
         payload: {
-            promise: userService.getAllUsers()
+            promise: userService.getAllUsers(access_token)
+        }
+    }).catch((error)=>{
+        handleError(dispatch, error);
+    })
+};
+
+export const deleteUser = (id) => (dispatch, getState) => {
+    const {access_token} = getState().authReducer.token;
+    return dispatch({
+        type: DELETE_USER,
+        payload: {
+            promise: userService.deleteUser(id, access_token)
         }
     }).catch((error)=>{
         handleError(dispatch, error);

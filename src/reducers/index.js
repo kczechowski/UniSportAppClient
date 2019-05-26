@@ -4,12 +4,16 @@ import {userReducer} from './user.reducer';
 import {authReducer} from "./auth.reducer";
 import {profileReducer} from "./profile.reducer";
 import {feedReducer} from "./feed.reducer";
+import {workoutReducer} from "./workout.reducer";
+import {registerReducer} from "./register.reducer";
 
 const rootReducers = combineReducers({
     userReducer,
     authReducer,
     profileReducer,
-    feedReducer
+    feedReducer,
+    workoutReducer,
+    registerReducer
 });
 
 export function createReducer(initialState, handlers) {

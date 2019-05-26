@@ -4,6 +4,9 @@ import Achievements from "../Achievements";
 import Feed from "../Feed";
 import Profile from "../Profile";
 import {Link, Route, Switch} from "react-router-dom";
+import Workout from "../Workout";
+import AdminTools from "../AdminTools";
+import AddWorkout from "../AddWorkout";
 
 export default class AppDashboard extends Component {
 
@@ -28,12 +31,14 @@ export default class AppDashboard extends Component {
                     <Header/>
                     <Route exact path="/app/" render={() => (
                         <div>
-                            <Achievements/>
-                            <Feed/>
-                            <Link to="/app/profile/1">profile1</Link>
+                            <AdminTools/>
+                            <AddWorkout/>
+                            {/*<Feed/>*/}
+                            <Route component={Feed}/>
                         </div>
                     )}/>
                     <Route path="/app/profile/:user_id" component={Profile}/>
+                    <Route path="/app/workout/:user_id/:workout_id" component={Workout}/>
                 </div>
             )
         else

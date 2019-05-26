@@ -1,11 +1,11 @@
-import {GET_LOGGED_IN_USER_INFO, GET_USER_INFO, GET_USER_WORKOUTS} from "../actions/user.actions";
+import {DELETE_USER, GET_LOGGED_IN_USER_INFO, GET_USER_INFO, GET_USER_WORKOUTS} from "../actions/user.actions";
 import {GET_ALL_USERS} from "../actions/user.actions";
 import {CREATE_USER} from "../actions/user.actions";
 import {createReducer} from "./index";
+import {ADD_WORKOUT} from "../actions/workout.actions";
 
 const initState = {
     user: undefined,
-    users: []
 };
 
 export const userReducer = createReducer(initState, {
@@ -52,8 +52,12 @@ export const userReducer = createReducer(initState, {
             ...state,
             users: action.payload,
         }),
+        [`${DELETE_USER}_FULFILLED`]: (state, action) => ({
+            ...state,
+            users: undefined,
+        }),
         [`${CREATE_USER}_FULFILLED`]: (state, action) => ({
             ...state,
-        })
+        }),
     }
 );
